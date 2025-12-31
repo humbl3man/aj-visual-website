@@ -16,6 +16,8 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.4.0",
 		"@eslint/js": "^9.39.1",
+		"@portabletext/svelte": "^3.0.1",
+		"@portabletext/to-html": "^5.0.1",
 		"@sveltejs/adapter-auto": "^7.0.0",
 		"@sveltejs/kit": "^2.49.1",
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",
@@ -45,6 +47,8 @@
 	},
 	"dependencies": {
 		"@sanity/image-url": "^2.0.2",
-		"@sanity/sveltekit": "^1.0.4"
+		"@sanity/sveltekit": "^1.0.4",
+		"marked": "^17.0.1",
+		"mdsvex": "^0.12.6"
 	}
 }

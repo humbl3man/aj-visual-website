@@ -12,10 +12,12 @@ function getSanityObject() {
 export const getProjects = query(async () => {
 	const sanity = getSanityObject();
 	const query = defineQuery(`
-    *[_type == "project"] { _id, title, slug, images}
+    *[_type == "project"] { _id, title, description, slug, images}
   `);
 	const { previewEnabled, client } = sanity;
 	const options = { stega: previewEnabled ? true : false };
-	const projects = await client.fetch<Project[]>(query, {}, options);
+	const result = await client.fetch<Project[]>(query, {}, options);
+	const projects = result;
+
 	return { projects };
 });
