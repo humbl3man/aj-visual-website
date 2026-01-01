@@ -6,10 +6,10 @@
 	import Header from '$lib/components/Header.svelte';
 
 	let { children, data } = $props();
-	const { previewEnabled } = data;
 	const {
+		previewEnabled,
 		metadata: { siteTitle }
-	} = await getSiteMetaData();
+	} = data;
 </script>
 
 <svelte:head>

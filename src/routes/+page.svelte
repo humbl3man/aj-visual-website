@@ -1,15 +1,11 @@
-<div class="flex h-dvh flex-col items-center justify-center">
-	<div class="max-w-[90vw] sm:max-w-[60vw]">
-		<h1 class="mb-8 text-7xl font-bold">AJ Photo</h1>
+<script lang="ts">
+	const { data } = $props();
+	const { siteTitle, heroText } = data.metadata;
+</script>
 
-		<section>
-			<p class="text-lg text-black/70">
-				Welcome to <strong>AJ Photo</strong> — a collection of stories told through images.
-			</p>
-			<hr class="my-4 text-black/15" />
-			<p class="text-lg text-black/70">
-				Galleries and booking info are on their way. Check back soon..
-			</p>
-		</section>
+<div class="flex min-h-[50dvh] flex-col items-center justify-center bg-indigo-50">
+	<div class="max-w-[90vw] sm:max-w-[60vw]">
+		<h1 class="mb-8 text-7xl font-bold">{siteTitle}</h1>
+		<p class="text-3xl">{heroText}</p>
 	</div>
 </div>
