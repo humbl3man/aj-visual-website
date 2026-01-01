@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { cn } from '$lib/utils';
 	import MenuIcon from '@lucide/svelte/icons/menu';
 
@@ -28,24 +29,25 @@
 		navigationYOffset = headerParentElement.clientHeight;
 	});
 
+	console.log(page.url.pathname);
+
 	$inspect(`nav offset value -- ${navigationYOffset}`);
 </script>
 
 <div class="relative" bind:this={headerParentElement}>
 	<div class="container mx-auto max-w-7xl">
 		<div class="flex justify-between gap-2 px-4 py-6">
-			<div class="text-xl font-bold md:text-2xl">{siteTitle}</div>
+			<a href="/" class="block text-xl font-bold hover:text-indigo-800 md:text-2xl">{siteTitle}</a>
 			<button
 				class={cn(['sm:hidden', 'cursor-pointer'])}
 				onclick={() => (isNavigationOpen = !isNavigationOpen)}><MenuIcon /></button
 			>
 			<!-- mobile navigation -->
 			<nav
-				class={cn([`absolute left-0 z-100 w-dvw bg-indigo-800 pt-8`, 'sm:hidden'], {
+				class={cn([`absolute top-full left-0 z-100 w-dvw bg-white py-10 shadow-2xl`, 'sm:hidden'], {
 					hidden: !isNavigationOpen,
 					block: isNavigationOpen
 				})}
-				style={`top: ${navigationYOffset}px; height:calc(100dvh - ${navigationYOffset}px)`}
 			>
 				<ul class={cn(['grid gap-2'])}>
 					{#each navlinks as { href, title }}
@@ -53,7 +55,7 @@
 							<a
 								onclick={() => (isNavigationOpen = false)}
 								class={cn([
-									'block rounded-md px-3 py-2 text-center font-normal text-white transition duration-200 hover:bg-indigo-700'
+									'block rounded-md px-3 py-2 text-center text-xl font-normal text-black transition duration-200 hover:text-indigo-700'
 								])}
 								{href}>{title}</a
 							>
@@ -69,7 +71,10 @@
 							<a
 								onclick={() => (isNavigationOpen = false)}
 								class={cn([
-									'block rounded-md px-3 py-2 font-normal transition duration-200 hover:bg-indigo-700 hover:text-white'
+									'block rounded-md px-3 py-2 font-normal transition duration-200 hover:bg-indigo-700 hover:text-white',
+									{
+										'bg-indigo-700 text-white': page.url.pathname.includes(href)
+									}
 								])}
 								{href}>{title}</a
 							>
