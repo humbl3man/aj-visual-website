@@ -1,16 +1,10 @@
-import { getRequestEvent, query } from '$app/server';
+import { query } from '$app/server';
+import getSanityFromRequest from '$lib/helpers/getSanityFromRequest';
 import type { Settings } from '$lib/sanity.schema';
 import { defineQuery } from '@sanity/sveltekit';
 
-function getSanityObject() {
-	const {
-		locals: { sanity }
-	} = getRequestEvent();
-	return sanity;
-}
-
 export const getSiteMetaData = query(async () => {
-	const sanity = getSanityObject();
+	const sanity = getSanityFromRequest();
 	const query = defineQuery(`
     *[_type == "settings"]
   `);
