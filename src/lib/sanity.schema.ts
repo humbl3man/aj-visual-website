@@ -13,6 +13,89 @@
  */
 
 // Source: schema.json
+export type SanityImageAssetReference = {
+	_ref: string;
+	_type: 'reference';
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+};
+
+export type ProjectReference = {
+	_ref: string;
+	_type: 'reference';
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: 'project';
+};
+
+export type LandingPage = {
+	_id: string;
+	_type: 'landingPage';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	heroImage?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: 'image';
+	};
+	heroHeadline?: string;
+	heroSubtext?: string;
+	introText?: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+		listItem?: 'bullet' | 'number';
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+	featuredProjects?: Array<
+		{
+			_key: string;
+		} & ProjectReference
+	>;
+	services?: Array<{
+		title?: string;
+		description?: string;
+		_type: 'service';
+		_key: string;
+	}>;
+	testimonials?: Array<{
+		quote?: string;
+		author?: string;
+		_type: 'testimonial';
+		_key: string;
+	}>;
+	ctaText?: string;
+};
+
+export type SanityImageCrop = {
+	_type: 'sanity.imageCrop';
+	top?: number;
+	bottom?: number;
+	left?: number;
+	right?: number;
+};
+
+export type SanityImageHotspot = {
+	_type: 'sanity.imageHotspot';
+	x?: number;
+	y?: number;
+	height?: number;
+	width?: number;
+};
+
 export type Settings = {
 	_id: string;
 	_type: 'settings';
@@ -46,13 +129,6 @@ export type Settings = {
 		_key: string;
 	}>;
 	contactEmail?: string;
-};
-
-export type SanityImageAssetReference = {
-	_ref: string;
-	_type: 'reference';
-	_weak?: boolean;
-	[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 };
 
 export type Project = {
@@ -91,22 +167,6 @@ export type Project = {
 	}>;
 	tags?: Array<string>;
 	date?: string;
-};
-
-export type SanityImageCrop = {
-	_type: 'sanity.imageCrop';
-	top?: number;
-	bottom?: number;
-	left?: number;
-	right?: number;
-};
-
-export type SanityImageHotspot = {
-	_type: 'sanity.imageHotspot';
-	x?: number;
-	y?: number;
-	height?: number;
-	width?: number;
 };
 
 export type Slug = {
@@ -212,11 +272,13 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
-	| Settings
 	| SanityImageAssetReference
-	| Project
+	| ProjectReference
+	| LandingPage
 	| SanityImageCrop
 	| SanityImageHotspot
+	| Settings
+	| Project
 	| Slug
 	| SanityImagePaletteSwatch
 	| SanityImagePalette
