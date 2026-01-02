@@ -8,8 +8,8 @@
 	console.log(projects);
 </script>
 
-<div class="container mx-auto mt-8 px-4">
-	<h1 class="mb-8 text-6xl font-bold">Projects</h1>
+<div class="container mx-auto max-w-7xl px-4">
+	<h1 class="mb-8 text-4xl font-semibold">Projects</h1>
 
 	<section class="grid grid-cols-2 gap-6 lg:grid-cols-3">
 		{#each projects as project}

@@ -34,7 +34,12 @@
 	$inspect(`nav offset value -- ${navigationYOffset}`);
 </script>
 
-<div class="relative" bind:this={headerParentElement}>
+<div
+	class={cn('relative z-1', {
+		'mb-8': page.url.pathname !== '/'
+	})}
+	bind:this={headerParentElement}
+>
 	<div class="container mx-auto max-w-7xl">
 		<div class="flex justify-between gap-2 px-4 py-6">
 			<a href="/" class="block text-xl font-bold hover:text-indigo-800 md:text-2xl">{siteTitle}</a>
