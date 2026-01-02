@@ -33,7 +33,7 @@
 </script>
 
 <div
-	class={cn('relative z-1', {
+	class={cn('relative z-998', {
 		'mb-8': page.url.pathname !== '/'
 	})}
 	bind:this={headerParentElement}
@@ -47,7 +47,7 @@
 			>
 			<!-- mobile navigation -->
 			<nav
-				class={cn([`absolute top-full left-0 z-100 w-dvw bg-white py-10 shadow-2xl`, 'sm:hidden'], {
+				class={cn([`absolute top-full left-0 z-999 w-dvw bg-white py-10 shadow-2xl`, 'sm:hidden'], {
 					hidden: !isNavigationOpen,
 					block: isNavigationOpen
 				})}
