@@ -20,6 +20,12 @@ importers:
       mdsvex:
         specifier: ^0.12.6
         version: 0.12.6(svelte@5.46.1)
+      zod:
+        specifier: ^4.3.4
+        version: 4.3.4
+      zod-mini:
+        specifier: ^0.0.1
+        version: 0.0.1
     devDependencies:
       '@eslint/compat':
         specifier: ^1.4.0
@@ -5821,8 +5827,14 @@ packages:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
 
+  zod-mini@0.0.1:
+    resolution: {integrity: sha512-C63FvV2EkahDCV5rHOmcvdfN0F1nH/JAT79HMxDEmlDv1FcttYoP95ngps2e9rzL+hrQlk6ezWxbSZzHmoZWKQ==}
+
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+
+  zod@4.3.4:
+    resolution: {integrity: sha512-Zw/uYiiyF6pUT1qmKbZziChgNPRu+ZRneAsMUDU6IwmXdWt5JwcUfy2bvLOCUtz5UniaN/Zx5aFttZYbYc7O/A==}
 
   zustand@5.0.9:
     resolution: {integrity: sha512-ALBtUj0AfjJt3uNRQoL1tL2tMvj6Gp/6e39dnfT6uzpelGru8v1tPOGBzayOWbPJvujM8JojDk3E1LxeFisBNg==}
@@ -12012,7 +12024,11 @@ snapshots:
       compress-commons: 6.0.2
       readable-stream: 4.7.0
 
+  zod-mini@0.0.1: {}
+
   zod@3.25.76: {}
+
+  zod@4.3.4: {}
 
   zustand@5.0.9(@types/react@19.2.7)(react@19.2.3)(use-sync-external-store@1.6.0(react@19.2.3)):
     optionalDependencies:

@@ -54,6 +54,8 @@
 		"@sanity/image-url": "^2.0.2",
 		"@sanity/sveltekit": "^1.0.4",
 		"marked": "^17.0.1",
-		"mdsvex": "^0.12.6"
+		"mdsvex": "^0.12.6",
+		"zod": "^4.3.4",
+		"zod-mini": "^0.0.1"
 	}
 }

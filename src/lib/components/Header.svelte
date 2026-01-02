@@ -28,8 +28,6 @@
 	$effect(() => {
 		navigationYOffset = headerParentElement.clientHeight;
 	});
-
-	$inspect(`nav offset value -- ${navigationYOffset}`);
 </script>
 
 <div
