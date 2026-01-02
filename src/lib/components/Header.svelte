@@ -29,8 +29,6 @@
 		navigationYOffset = headerParentElement.clientHeight;
 	});
 
-	console.log(page.url.pathname);
-
 	$inspect(`nav offset value -- ${navigationYOffset}`);
 </script>
 

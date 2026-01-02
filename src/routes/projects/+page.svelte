@@ -5,7 +5,6 @@
 	import Image from '../../components/Image.svelte';
 
 	const { projects } = await getProjects();
-	console.log(projects);
 </script>
 
 <div class="container mx-auto max-w-7xl px-4">

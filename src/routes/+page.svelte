@@ -4,10 +4,7 @@
 	import { cn } from '$lib/utils';
 	import Image from '../components/Image.svelte';
 
-	const { data } = $props();
-	const { siteTitle, heroText } = data.metadata;
 	const { landingPage } = await getLandingPageData();
-	console.log(landingPage);
 </script>
 
 <!-- hero -->
