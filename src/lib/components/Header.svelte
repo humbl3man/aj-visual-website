@@ -67,12 +67,12 @@
 			<!-- desktop navigation -->
 			<nav class="hidden sm:block">
 				<ul class={cn(['grid auto-cols-max grid-flow-col gap-4'])}>
-					{#each navlinks as { href, title }}
+					{#each navlinks as { href, title } (href)}
 						<li>
 							<a
 								onclick={() => (isNavigationOpen = false)}
 								class={cn([
-									'block rounded-md px-3 py-2 font-normal transition duration-200 hover:bg-indigo-700 hover:text-white',
+									'block rounded-md px-3 py-2 font-normal transition duration-200 hover:text-accent',
 									{
 										'bg-indigo-700 text-white': page.url.pathname.includes(href)
 									}
