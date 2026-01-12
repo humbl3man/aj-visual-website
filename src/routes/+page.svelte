@@ -57,9 +57,11 @@
 
 <section class="container mx-auto my-24 max-w-7xl px-4">
 	<h2 class="mb-2 text-center font-serif text-2xl font-semibold md:text-3xl">
-		Want to make today’s moments last forever?
+		How about a photo session that’s actually fun?
 	</h2>
-	<p class="mb-4 text-center text-xl">Comfortable sessions, timeless photos.</p>
+	<p class="mb-8 text-center text-xl">
+		Enjoy a stress-free experience and end up with photos you love.
+	</p>
 	<div class="flex items-center justify-center">
 		<a href="/contact" class={buttonVariants({ variant: 'accent', size: 'lg' })}>
 			{landingPage.ctaText || 'Book a Session'}

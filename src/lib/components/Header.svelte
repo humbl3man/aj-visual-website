@@ -10,7 +10,7 @@
 	const navlinks = [
 		{
 			href: '/projects',
-			title: 'Projects'
+			title: 'Portfolio'
 		},
 		{
 			href: '/about',
@@ -38,7 +38,7 @@
 >
 	<div class="container mx-auto max-w-7xl">
 		<div class="flex justify-between gap-2 px-4 py-6">
-			<a href="/" class="block text-xl font-bold hover:text-indigo-800 md:text-2xl">{siteTitle}</a>
+			<a href="/" class="block text-xl font-bold hover:text-accent md:text-2xl">{siteTitle}</a>
 			<button
 				class={cn(['sm:hidden', 'cursor-pointer'])}
 				onclick={() => (isNavigationOpen = !isNavigationOpen)}><MenuIcon /></button
@@ -51,12 +51,12 @@
 				})}
 			>
 				<ul class={cn(['grid gap-2'])}>
-					{#each navlinks as { href, title }}
+					{#each navlinks as { href, title } (href)}
 						<li>
 							<a
 								onclick={() => (isNavigationOpen = false)}
 								class={cn([
-									'block rounded-md px-3 py-2 text-center text-xl font-normal text-black transition duration-200 hover:text-indigo-700'
+									'block rounded-md px-3 py-2 text-center text-xl font-semibold text-black transition duration-200 hover:text-accent'
 								])}
 								{href}>{title}</a
 							>
@@ -72,7 +72,7 @@
 							<a
 								onclick={() => (isNavigationOpen = false)}
 								class={cn([
-									'block rounded-md px-3 py-2 font-normal transition duration-200 hover:text-accent',
+									'block rounded-md px-3 py-2 font-semibold transition duration-200 hover:text-accent',
 									{
 										'bg-indigo-700 text-white': page.url.pathname.includes(href)
 									}
