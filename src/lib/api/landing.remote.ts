@@ -8,7 +8,6 @@ export const getLandingPageData = query(async () => {
 	*[_type == "landingPage"][0] {
       heroHeadline,
       heroSubtext,
-      ctaText,
       "heroImage": heroImage {
         asset->{
           _id,
@@ -22,7 +21,9 @@ export const getLandingPageData = query(async () => {
             }
           }
         }
-      }
+      },
+      heroCtaText,
+      testimonials
     }
     `);
 
