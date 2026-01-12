@@ -131,6 +131,18 @@ export type Settings = {
 	contactEmail?: string;
 };
 
+export type ExpandedSanityAsset = {
+	url: string;
+	metadata: {
+		lqip: string;
+		dimensions: {
+			aspectRatio: number;
+			width: number;
+			height: number;
+		};
+	};
+};
+
 export type Project = {
 	_id: string;
 	_type: 'project';
@@ -158,7 +170,7 @@ export type Project = {
 		_key: string;
 	}>;
 	images?: Array<{
-		asset?: SanityImageAssetReference;
+		asset?: ExpandedSanityAsset;
 		media?: unknown;
 		hotspot?: SanityImageHotspot;
 		crop?: SanityImageCrop;

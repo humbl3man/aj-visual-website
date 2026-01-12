@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { getProjects } from '$lib/api/project.remote';
-	import Image from '../../components/Image.svelte';
+	import Image from '../../components/SanityImage.svelte';
 
 	const { projects } = await getProjects();
+	console.log(projects);
 </script>
 
 <div class="container mx-auto max-w-7xl px-4">
@@ -24,7 +25,6 @@
 					<Image
 						asset={thumbnailImageAsset!}
 						width={600}
-						height={600}
 						class="block h-full w-full object-cover brightness-50 transition duration-500 group-hover:brightness-75"
 					/>
 				</article>

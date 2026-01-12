@@ -2,16 +2,36 @@ import { query } from '$app/server';
 import getSanityFromRequest from '$lib/helpers/getSanityFromRequest';
 import type { Project } from '$lib/sanity.schema';
 import { defineQuery } from '@sanity/sveltekit';
-import {} from 'zod-mini';
-import { z } from 'zod/mini';
+import { z } from 'zod';
 
 export const getProjects = query(async () => {
 	const sanity = getSanityFromRequest();
 	const query = defineQuery(`
-    *[_type == "project"] { _id, title, description, slug, images}
+  	*[_type == "project"]{
+  		title,
+  		description,
+  		"images": images[]{
+  			"alt": alt,
+  			// The '->' is mandatory to access metadata
+  			"asset": asset->{
+  				_id,
+  				url,
+  				metadata {
+  					lqip,
+  					dimensions {
+  						aspectRatio,
+  						width,
+  						height
+  					}
+  				}
+  			}
+  		}
+  	}
   `);
 	const { previewEnabled, client } = sanity;
-	const options = { stega: previewEnabled ? true : false };
+	// useCdn controls whether to use CDN cached results. When preview is enabled
+	// we should not use the CDN so edits show immediately.
+	const options = { useCdn: !previewEnabled };
 	const result = await client.fetch<Project[]>(query, {}, options);
 	const projects = result;
 
@@ -21,10 +41,28 @@ export const getProjects = query(async () => {
 export const getProjectBySlug = query(z.string(), async (slug) => {
 	const sanity = getSanityFromRequest();
 	const query = defineQuery(`
-		*[_type == "project" && slug.current == $slug] { _id, title, description, slug, images }
+		*[_type == "project" && slug.current == $slug][0]{
+			title,
+			description,
+			"images": images[]{
+				"alt": alt,
+				// The '->' is mandatory to access metadata
+				"asset": asset->{
+					_id,
+					url,
+					metadata {
+						lqip,
+						dimensions {
+							aspectRatio,
+							width,
+							height
+						}
+					}
+				}
+			}
+		}
 	`);
-	const { client } = sanity;
-	const [project] = await client.fetch<Project[]>(query, { slug });
+	const project = await sanity.client.fetch<Project>(query, { slug });
 	return {
 		project
 	};
