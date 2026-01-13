@@ -55,7 +55,7 @@
 			<div>We’ll choose a location, time, and vibe that feels right for you.</div>
 		</div>
 		<div class="rounded-sm border-2 border-accent p-5 shadow-xs">
-			<div class="mb-2 text-2xl font-semibold text-accent">Step 3: Reach out</div>
+			<div class="mb-2 text-2xl font-semibold text-accent">Step 3: Enjoy the experience</div>
 			<div>Relax and have fun &mdash; I’ll guide you so everything feels natural.</div>
 		</div>
 	</div>
