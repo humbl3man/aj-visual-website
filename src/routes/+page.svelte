@@ -3,6 +3,8 @@
 	import { buttonVariants } from '$lib/components/ui/button';
 	import Image from '../components/SanityImage.svelte';
 
+	import aboutImage from '$lib/assets/img/april-about.jpg';
+
 	const { landingPage } = await getLandingPageData();
 	console.log(landingPage.testimonials);
 </script>
@@ -40,8 +42,60 @@
 	</div>
 </section>
 
+<!-- how it works -->
+<section class="container mx-auto my-16 max-w-7xl px-4">
+	<h2 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">What to expect</h2>
+	<div class="grid gap-8 md:grid-cols-3">
+		<div class="rounded-sm border-2 border-accent p-5 shadow-xs">
+			<div class="mb-2 text-2xl font-semibold text-accent">Step 1: Reach out</div>
+			<div>Send a message with the type of session you’re looking for and a preferred date.</div>
+		</div>
+		<div class="rounded-sm border-2 border-accent p-5 shadow-xs">
+			<div class="mb-2 text-2xl font-semibold text-accent">Step 2: Plan your session</div>
+			<div>We’ll choose a location, time, and vibe that feels right for you.</div>
+		</div>
+		<div class="rounded-sm border-2 border-accent p-5 shadow-xs">
+			<div class="mb-2 text-2xl font-semibold text-accent">Step 3: Reach out</div>
+			<div>Relax and have fun &mdash; I’ll guide you so everything feels natural.</div>
+		</div>
+	</div>
+</section>
+
+<!-- TODO: portfolio reel -->
+<section class="container mx-auto my-16 max-w-7xl px-4">
+	<h2 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">Portfolio</h2>
+</section>
+
+<!-- about -->
+<section class="container mx-auto my-16 max-w-280 px-4">
+	<div class="grid gap-8 sm:grid-cols-2">
+		<div class="max-h-130 overflow-hidden rounded-sm shadow-sm">
+			<img
+				src={aboutImage}
+				class="h-full w-full object-cover"
+				alt="Woman holding a camera"
+				loading="lazy"
+			/>
+		</div>
+		<div>
+			<h3 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">Hi, I am April</h3>
+			<p class="mb-2">
+				I’m a family and maternity photographer who believes the best photos come from real
+				connection, not stiff posing. My sessions are relaxed and guided, so you can be yourself and
+				actually enjoy the experience.
+			</p>
+
+			<p>
+				I focus on capturing natural moments, genuine emotion, and the small details you’ll want to
+				remember years from now. Whether it’s a quiet moment or a burst of laughter, my goal is to
+				create photos that feel honest, warm, and timeless.
+			</p>
+		</div>
+	</div>
+</section>
+
+<!-- testimonials (social proof) -->
 {#if landingPage.testimonials && landingPage.testimonials.length > 0}
-	<!-- testimonials (social proof) -->
 	<section class="container mx-auto my-16 max-w-7xl px-4">
 		<h2 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">Kind words from past clients</h2>
 		<div class="grid gap-8 md:grid-cols-3">
