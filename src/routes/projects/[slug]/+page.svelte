@@ -5,6 +5,7 @@
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { Spinner } from '$lib/components/ui/spinner';
 	import * as Carousel from '$lib/components/ui/carousel';
+	import { cn } from '$lib/utils';
 
 	const { params } = $props();
 	const projectPromise = $derived(getProjectBySlug(params.slug));
@@ -16,7 +17,8 @@
 	</div>
 {:then { project }}
 	{@const { title, images, description } = project}
-	<div class="flex flex-col gap-6">
+	{@const galleryImages = images?.slice(1)}
+	<div class="flex flex-col gap-4">
 		<header class="container mx-auto max-w-7xl px-4">
 			<div class="mb-2">
 				<a
@@ -57,13 +59,18 @@
 			{/if}
 		</header>
 
-		{#if images?.length}
-			<section class="container mx-auto max-w-275 px-4">
-				<h2 class="mb-4 font-serif text-3xl font-semibold">More Images</h2>
+		{#if galleryImages?.length}
+			<section class="container mx-auto max-w-7xl px-16">
 				<Carousel.Root>
 					<Carousel.Content>
-						{#each images?.slice(1) as image}
-							<Carousel.Item class="sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+						{#each galleryImages as image}
+							<Carousel.Item
+								class={cn('md:basis-1/2', {
+									'lg:basis-1/5': galleryImages.length > 6,
+									'lg:basis-1/4': galleryImages.length > 4 || galleryImages.length <= 6,
+									'lg:basis-1/3': galleryImages.length <= 4
+								})}
+							>
 								{#if image?.asset}
 									<SanityImage asset={image?.asset} alt="" width={600} />
 								{/if}
