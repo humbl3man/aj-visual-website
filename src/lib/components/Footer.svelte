@@ -3,7 +3,7 @@
 	const copyrightYear = new Date().getFullYear();
 </script>
 
-<footer class="bg-accent/10 py-16">
+<footer class="mt-24 bg-accent/10 py-16">
 	<div class="container mx-auto max-w-7xl px-4">
 		<div class="text-lg font-semibold">{siteTitle}</div>
 		<div class="mt-4 flex flex-col gap-2">
