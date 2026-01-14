@@ -2,6 +2,24 @@
 	import * as AspectRatio from '$lib/components/ui/aspect-ratio';
 	import { cn } from '$lib/utils';
 
+	type ImageProps = {
+		asset: {
+			url: string;
+			metadata?: {
+				dimensions?: {
+					aspectRatio: number;
+				};
+				lqip?: string;
+			};
+		};
+		alt?: string;
+		width?: number;
+		ratio?: number;
+		class?: string;
+		imgClass?: string;
+		[key: string]: any;
+	};
+
 	let {
 		asset,
 		alt,
@@ -10,14 +28,13 @@
 		class: className, // container class
 		imgClass, // image-specific class
 		...rest
-	} = $props();
+	}: ImageProps = $props();
 
 	let isLoaded = $state(false);
 
 	// Fallback to natural metadata if no ratio is passed
 	const derivedRatio = $derived(ratio || asset?.metadata?.dimensions?.aspectRatio || 1);
 	const src = $derived(asset?.url ? `${asset.url}?w=${width}&auto=format` : '');
-	console.log(asset.url);
 </script>
 
 <div class={cn('overflow-hidden rounded-lg bg-muted', className)}>
