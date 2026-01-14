@@ -4,6 +4,7 @@
 	import { PreviewMode, VisualEditing } from '@sanity/sveltekit';
 	import { getSiteMetaData } from '$lib/api/settings.remote';
 	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	let { children, data } = $props();
 	const {
@@ -25,5 +26,6 @@
 	<VisualEditing enabled={previewEnabled}>
 		<Header {siteTitle} />
 		<main>{@render children()}</main>
+		<Footer {siteTitle} />
 	</VisualEditing>
 </PreviewMode>
