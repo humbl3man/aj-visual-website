@@ -9,16 +9,16 @@
 	const { siteTitle }: HeaderProps = $props();
 	const navlinks = [
 		{
+			href: '/',
+			title: 'Home'
+		},
+		{
 			href: '/projects',
 			title: 'Portfolio'
 		},
 		{
-			href: '/about',
-			title: 'About'
-		},
-		{
 			href: '/contact',
-			title: 'Contact'
+			title: 'Book Session'
 		}
 	];
 
