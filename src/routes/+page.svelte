@@ -145,15 +145,18 @@
 	</section>
 {/if}
 
-<section class="container mx-auto my-12 max-w-7xl md:my-24">
-	<h2 class="mb-2 text-center font-serif text-2xl font-semibold md:text-3xl">
+<section class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
+	<h2 class="mb-2 font-serif text-2xl font-semibold sm:text-center md:text-3xl">
 		How about a photo session that’s actually fun?
 	</h2>
-	<p class="mb-8 text-center text-xl">
+	<p class="mb-8 text-xl sm:text-center">
 		Enjoy a stress-free experience and end up with photos you love.
 	</p>
 	<div class="flex items-center justify-center">
-		<a href={resolve('/contact')} class={buttonVariants({ variant: 'accent', size: 'lg' })}>
+		<a
+			href={resolve('/contact')}
+			class={`${buttonVariants({ variant: 'accent', size: 'lg' })} block w-full sm:w-auto`}
+		>
 			Book Your Session
 		</a>
 	</div>
