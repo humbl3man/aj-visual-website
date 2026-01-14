@@ -8,6 +8,28 @@ export const getLandingPageData = query(async () => {
 	*[_type == "landingPage"][0] {
       heroHeadline,
       heroSubtext,
+      ctaText,
+      testimonials,
+      featuredProjects[]->{
+        _id,
+        title,
+        images[] {
+          asset->{
+            _id,
+            url,
+            metadata {
+              lqip,
+              dimensions {
+                aspectRatio,
+                height,
+                width
+              }
+            }
+          }
+        },
+        slug,
+        description
+      },
       "heroImage": heroImage {
         asset->{
           _id,
@@ -21,9 +43,7 @@ export const getLandingPageData = query(async () => {
             }
           }
         }
-      },
-      heroCtaText,
-      testimonials
+      }
     }
     `);
 
