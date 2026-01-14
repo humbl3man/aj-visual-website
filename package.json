@@ -58,6 +58,7 @@
 		"@sanity/sveltekit": "^1.0.4",
 		"marked": "^17.0.1",
 		"mdsvex": "^0.12.6",
+		"resend": "^6.7.0",
 		"zod": "^4.3.4",
 		"zod-mini": "^0.0.1"
 	}

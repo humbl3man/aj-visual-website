@@ -1,4 +1,6 @@
 <script lang="ts">
+	import config from '$lib/site.config';
+
 	let { siteTitle }: { siteTitle?: string } = $props();
 	const copyrightYear = new Date().getFullYear();
 </script>
@@ -7,9 +9,7 @@
 	<div class="container mx-auto max-w-7xl px-4">
 		<div class="text-lg font-semibold">{siteTitle}</div>
 		<div class="mt-4 flex flex-col gap-2">
-			<a href="mailto:placeholder.email@example.com" class="underline"
-				>placeholder.email@example.com</a
-			>
+			<a href={`mailto:${config.contactEmail}`} class="underline">{config.contactEmail}</a>
 			<div class="text-sm text-foreground/80">&copy; All Rights Reserved {copyrightYear}</div>
 		</div>
 		<!-- TODO: add instagram icon -->
