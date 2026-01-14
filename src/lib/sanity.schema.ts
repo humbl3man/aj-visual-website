@@ -34,7 +34,7 @@ export type LandingPage = {
 	_updatedAt: string;
 	_rev: string;
 	heroImage?: {
-		asset?: SanityImageAssetReference;
+		asset?: ExpandedSanityAsset;
 		media?: unknown;
 		hotspot?: SanityImageHotspot;
 		crop?: SanityImageCrop;
@@ -63,7 +63,7 @@ export type LandingPage = {
 	featuredProjects?: Array<
 		{
 			_key: string;
-		} & ProjectReference
+		} & Project
 	>;
 	services?: Array<{
 		title?: string;
