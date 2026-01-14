@@ -7,8 +7,6 @@ import config from '$lib/site.config';
 export const submitContactForm = form(contactFormSchema, async (data) => {
 	const { name, email, message } = data;
 
-	console.log(config.contactEmail);
-
 	try {
 		await sendEmail({
 			to: config.contactEmail, // Update with your email
@@ -47,7 +45,6 @@ type EmailOptions = {
 
 async function sendEmail({ to, from, replyTo, subject, body }: EmailOptions): Promise<void> {
 	const resend = new Resend(EMAIL_API_KEY);
-	console.log('send', { to, from, replyTo, subject, body });
 	await resend.emails.send({
 		from,
 		to,
