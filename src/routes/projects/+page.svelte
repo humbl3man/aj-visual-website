@@ -4,7 +4,6 @@
 	import Image from '../../components/SanityImage.svelte';
 
 	const { projects } = await getProjects();
-	console.log(projects);
 </script>
 
 <div class="container mx-auto max-w-7xl px-4">
