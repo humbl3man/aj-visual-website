@@ -38,7 +38,9 @@
 >
 	<div class="container mx-auto max-w-7xl">
 		<div class="flex justify-between gap-2 px-4 py-6">
-			<a href="/" class="block text-xl font-bold hover:text-accent md:text-2xl">{siteTitle}</a>
+			<a href="/" class="block text-xl font-bold text-accent brightness-50 md:text-2xl"
+				>{siteTitle}</a
+			>
 			<button
 				class={cn(['sm:hidden', 'cursor-pointer'])}
 				onclick={() => (isNavigationOpen = !isNavigationOpen)}><MenuIcon /></button
@@ -72,9 +74,9 @@
 							<a
 								onclick={() => (isNavigationOpen = false)}
 								class={cn([
-									'block rounded-md px-3 py-2 font-semibold transition duration-200 hover:text-accent',
+									'block rounded-md px-3 py-2 font-semibold transition duration-200 hover:text-accent hover:brightness-75',
 									{
-										'bg-indigo-700 text-white': page.url.pathname.includes(href)
+										'text-accent brightness-75': page.url.pathname.includes(href)
 									}
 								])}
 								{href}>{title}</a
