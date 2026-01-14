@@ -1,50 +1,84 @@
 <script lang="ts">
+	import { ArrowLeftIcon } from '@lucide/svelte';
 	import { getProjectBySlug } from '$lib/api/project.remote';
 	import SanityImage from '../../../components/SanityImage.svelte';
+	import { buttonVariants } from '$lib/components/ui/button';
+	import { Spinner } from '$lib/components/ui/spinner';
+	import * as Carousel from '$lib/components/ui/carousel';
 
 	const { params } = $props();
-	const { project } = $derived(await getProjectBySlug(params.slug));
-	const [heroImage] = project?.images || [];
-	const [, ...projectImages] = project?.images || [];
-	$inspect(project);
+	const projectPromise = $derived(getProjectBySlug(params.slug));
 </script>
 
-<div class="flex flex-col gap-16">
-	<header class="container mx-auto max-w-7xl px-4">
-		<div class="mb-8">
-			<SanityImage asset={heroImage.asset} width={1400} alt="" />
-		</div>
-		<div class="max-w-3xl">
-			<h1 class="mb-6 font-serif text-5xl tracking-tighter md:text-7xl">
-				{project.title}
-			</h1>
-
-			{#if project.description?.length && project.description[0].children}
-				<div class="prose prose-stone text-lg leading-relaxed text-muted-foreground md:text-xl">
-					<p>{project.description[0]?.children[0]?.text}</p>
+{#await projectPromise}
+	<div class="flex min-h-screen items-center justify-center">
+		<Spinner class="size-8" />
+	</div>
+{:then { project }}
+	{@const { title, images, description } = project}
+	<div class="flex flex-col gap-6">
+		<header class="container mx-auto max-w-7xl px-4">
+			<div class="mb-2">
+				<a
+					data-sveltekit-preload-data="tap"
+					href="/projects"
+					class={buttonVariants({
+						variant: 'link',
+						size: 'lg'
+					})}><ArrowLeftIcon /> All Projects</a
+				>
+			</div>
+			{#if images?.length && images[0].asset}
+				<div class="relative z-1 mb-8 overflow-hidden rounded-sm sm:max-h-125 lg:max-h-150">
+					<SanityImage
+						asset={images[0].asset}
+						width={2000}
+						ratio={1}
+						alt=""
+						class="block h-full w-full object-cover brightness-55"
+					/>
+					<div
+						class="absolute bottom-4 left-4 z-2 p-2 sm:bottom-5 sm:left-5 md:bottom-10 md:left-10"
+					>
+						<h1
+							class="max-w-200 font-serif text-2xl font-semibold tracking-tighter text-background sm:text-4xl md:text-6xl"
+						>
+							{title}
+						</h1>
+						{#if description?.length && description[0].children}
+							<div
+								class="prose prose-stone mt-4 max-w-75 leading-tight text-background/80 md:text-xl"
+							>
+								<p>{description[0]?.children[0]?.text}</p>
+							</div>
+						{/if}
+					</div>
 				</div>
 			{/if}
-		</div>
-	</header>
+		</header>
 
-	<section class="container mx-auto max-w-7xl px-4">
-		<div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-			{#each projectImages as image}
-				<SanityImage asset={image.asset} alt={project.title} width={600} />
-			{/each}
-		</div>
-	</section>
-
-	<footer class="border-t bg-secondary/20 py-20">
-		<div class="container mx-auto flex flex-col items-center px-6 text-center">
-			<p class="mb-4 text-sm tracking-widest text-muted-foreground uppercase">Next Project</p>
-			<a href="/projects/next-slug" class="group">
-				<h2
-					class="font-serif text-4xl italic transition-all group-hover:italic md:text-6xl md:not-italic"
-				>
-					The Next Adventure →
-				</h2>
-			</a>
-		</div>
-	</footer>
-</div>
+		{#if images?.length}
+			<section class="container mx-auto max-w-275 px-4">
+				<h2 class="mb-4 font-serif text-3xl font-semibold">More Images</h2>
+				<Carousel.Root>
+					<Carousel.Content>
+						{#each images?.slice(1) as image}
+							<Carousel.Item class="sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+								{#if image?.asset}
+									<SanityImage asset={image?.asset} alt="" width={600} />
+								{/if}
+							</Carousel.Item>
+						{/each}
+					</Carousel.Content>
+					<Carousel.Previous />
+					<Carousel.Next />
+				</Carousel.Root>
+				<div class="grid grid-cols-2 gap-4 md:grid-cols-4"></div>
+			</section>
+		{/if}
+	</div>
+{:catch error}
+	<div class="flex min-h-screen items-center justify-center">
+		<p class="text-destructive">Failed to load project: {error.message}</p>
+	</div>
+{/await}

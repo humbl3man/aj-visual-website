@@ -28,6 +28,7 @@
 							asset={projectThumbnail!}
 							width={600}
 							class="block h-full w-full object-cover brightness-50 transition duration-500 group-hover:brightness-75"
+							alt=""
 						/>
 					{:else}
 						<div>Image Not Found</div>

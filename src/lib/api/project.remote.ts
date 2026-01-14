@@ -12,7 +12,6 @@ export const getProjects = query(async () => {
   		description,
 			slug,
   		"images": images[]{
-  			"alt": alt,
   			// The '->' is mandatory to access metadata
   			"asset": asset->{
   				_id,
@@ -46,7 +45,6 @@ export const getProjectBySlug = query(z.string(), async (slug) => {
 			title,
 			description,
 			"images": images[]{
-				"alt": alt,
 				// The '->' is mandatory to access metadata
 				"asset": asset->{
 					_id,
