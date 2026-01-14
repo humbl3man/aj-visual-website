@@ -9,16 +9,16 @@
 	const { siteTitle }: HeaderProps = $props();
 	const navlinks = [
 		{
-			href: '/',
-			title: 'Home'
-		},
-		{
 			href: '/projects',
 			title: 'Portfolio'
 		},
 		{
 			href: '/contact',
 			title: 'Book Session'
+		},
+		{
+			href: '/faq',
+			title: 'FAQ'
 		}
 	];
 
@@ -38,7 +38,7 @@
 >
 	<div class="container mx-auto max-w-7xl">
 		<div class="flex justify-between gap-2 px-4 py-6">
-			<a href="/" class="block text-xl font-bold text-accent brightness-50 md:text-2xl"
+			<a href="/" class="block font-serif text-xl font-bold text-accent brightness-50 md:text-2xl"
 				>{siteTitle}</a
 			>
 			<button
@@ -47,10 +47,16 @@
 			>
 			<!-- mobile navigation -->
 			<nav
-				class={cn([`absolute top-full left-0 z-999 w-dvw bg-white py-10 shadow-2xl`, 'sm:hidden'], {
-					hidden: !isNavigationOpen,
-					block: isNavigationOpen
-				})}
+				class={cn(
+					[
+						`absolute top-full left-0 z-999 w-dvw bg-background py-10 shadow-md shadow-foreground/10`,
+						'sm:hidden'
+					],
+					{
+						hidden: !isNavigationOpen,
+						block: isNavigationOpen
+					}
+				)}
 			>
 				<ul class={cn(['grid gap-2'])}>
 					{#each navlinks as { href, title } (href)}
