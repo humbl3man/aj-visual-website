@@ -10,6 +10,7 @@ export const getProjects = query(async () => {
   	*[_type == "project"]{
   		title,
   		description,
+			slug,
   		"images": images[]{
   			"alt": alt,
   			// The '->' is mandatory to access metadata

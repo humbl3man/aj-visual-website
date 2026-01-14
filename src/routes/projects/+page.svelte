@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getProjects } from '$lib/api/project.remote';
+	import { resolve } from '$app/paths';
 	import Image from '../../components/SanityImage.svelte';
 
 	const { projects } = await getProjects();
@@ -7,13 +8,13 @@
 </script>
 
 <div class="container mx-auto max-w-7xl px-4">
-	<h1 class="mb-8 text-4xl font-semibold">Projects</h1>
+	<h1 class="mb-8 text-4xl font-semibold">Portfolio</h1>
 
 	<section class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 		{#each projects as project}
-			{@const thumbnailImageAsset = project.images && project?.images[0].asset}
-			{@const url = project.slug?.current}
-			<a href={`/projects/${url}`}>
+			{@const projectThumbnail = project.images && project?.images[0].asset}
+			{@const projectUrl = project.slug?.current}
+			<a href={resolve(`/projects/${projectUrl}`)}>
 				<article class="group relative z-1 overflow-hidden">
 					<div
 						class="absolute top-[50%] left-[50%] z-10 flex -translate-x-[50%] -translate-y-[50%] flex-col gap-4"
@@ -22,11 +23,15 @@
 							{project.title}
 						</div>
 					</div>
-					<Image
-						asset={thumbnailImageAsset!}
-						width={600}
-						class="block h-full w-full object-cover brightness-50 transition duration-500 group-hover:brightness-75"
-					/>
+					{#if projectThumbnail}
+						<Image
+							asset={projectThumbnail!}
+							width={600}
+							class="block h-full w-full object-cover brightness-50 transition duration-500 group-hover:brightness-75"
+						/>
+					{:else}
+						<div>Image Not Found</div>
+					{/if}
 				</article>
 			</a>
 		{/each}
