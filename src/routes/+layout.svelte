@@ -6,10 +6,8 @@
 	import Footer from '$lib/components/Footer.svelte';
 
 	let { children, data } = $props();
-	const {
-		previewEnabled,
-		metadata: { siteTitle }
-	} = data;
+	const previewEnabled = $derived(data.previewEnabled);
+	const siteTitle = $derived(data.metadata.siteTitle);
 </script>
 
 <svelte:head>
