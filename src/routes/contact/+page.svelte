@@ -6,7 +6,12 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Spinner } from '$lib/components/ui/spinner';
 	import { contactFormSchema } from '$lib/schemas/contact.schema';
+	import { page } from '$app/state';
 </script>
+
+<svelte:head>
+	<title>Book a Photography Session | {page.data.metadata.siteTitle}</title>
+</svelte:head>
 
 <div class="container mx-auto max-w-xl px-4">
 	<h1 class="mb-6 text-3xl font-semibold">Book a Session</h1>

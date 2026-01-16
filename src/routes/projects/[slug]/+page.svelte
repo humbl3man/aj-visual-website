@@ -6,10 +6,15 @@
 	import * as Carousel from '$lib/components/ui/carousel';
 	import { cn } from '$lib/utils';
 	import Skeleton from '$lib/components/ui/skeleton/skeleton.svelte';
+	import type { PageProps } from './$types';
 
-	const { params } = $props();
+	const { params, data }: PageProps = $props();
 	const projectPromise = $derived(getProjectBySlug(params.slug));
 </script>
+
+<svelte:head>
+	<title>{`${data.metaProjectTitle} | ${data.metadata.siteTitle}`}</title>
+</svelte:head>
 
 {#await projectPromise}
 	<div class="flex flex-col gap-4">

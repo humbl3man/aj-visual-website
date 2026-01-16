@@ -2,9 +2,14 @@
 	import { getProjects } from '$lib/api/project.remote';
 	import { resolve } from '$app/paths';
 	import Image from '../../components/SanityImage.svelte';
+	import { page } from '$app/state';
 
 	const { projects } = await getProjects();
 </script>
+
+<svelte:head>
+	<title>Photography Portfolio | {page.data.metadata.siteTitle}</title>
+</svelte:head>
 
 <div class="container mx-auto max-w-7xl px-4">
 	<h1 class="mb-8 text-4xl font-semibold">Portfolio</h1>
@@ -14,7 +19,7 @@
 			{@const projectThumbnail = project.images && project?.images[0].asset}
 			{@const projectUrl = project.slug?.current}
 			<a href={resolve(`/projects/${projectUrl}`)}>
-				<article class="group relative z-1 overflow-hidden">
+				<article class="group asd-hidden relative z-1">
 					<div
 						class="absolute top-[50%] left-[50%] z-10 flex -translate-x-[50%] -translate-y-[50%] flex-col gap-4"
 					>

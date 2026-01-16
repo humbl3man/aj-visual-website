@@ -1,6 +1,5 @@
-<!-- TODO: this content should come from CMS, for now it can be hardcoded -->
-
 <script lang="ts">
+	import { page } from '$app/state';
 </script>
 
 {#snippet faqItem(item: { question: string; answer: string })}
@@ -12,8 +11,13 @@
 	</div>
 {/snippet}
 
+<svelte:head>
+	<title>Frequently Asked Questions | {page.data.metadata.siteTitle}</title>
+</svelte:head>
 <div class="container mx-auto max-w-5xl px-4">
 	<h1 class="font-serif text-4xl font-semibold">Frequently Asked Questions</h1>
+	<!-- TODO: this content should come from CMS, for now it can be hardcoded -->
+
 	<div class="flex flex-col gap-1 md:gap-3">
 		{@render faqItem({
 			question: 'How far in advance should I book a session?',
