@@ -10,6 +10,40 @@
 	const {
 		landingPage: { featuredProjects, testimonials, heroHeadline, heroImage, heroSubtext, ctaText }
 	} = await getLandingPageData();
+
+	// Scroll animation action using Intersection Observer
+	function scrollReveal(node: HTMLElement, options: { delay?: number } = {}) {
+		const { delay = 0 } = options;
+
+		// Set initial styles
+		node.style.opacity = '0';
+		node.style.transform = 'translateY(30px)';
+		node.style.transition = `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						node.style.opacity = '1';
+						node.style.transform = 'translateY(0)';
+						observer.unobserve(node); // Only animate once
+					}
+				});
+			},
+			{
+				threshold: 0.1,
+				rootMargin: '0px 0px -50px 0px'
+			}
+		);
+
+		observer.observe(node);
+
+		return {
+			destroy() {
+				observer.disconnect();
+			}
+		};
+	}
 </script>
 
 <!-- hero -->
@@ -43,30 +77,43 @@
 </section>
 
 <!-- how it works -->
-<section class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
+<section use:scrollReveal class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
 	<h2 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">What to expect</h2>
 	<div class="grid gap-8 md:grid-cols-3">
-		<div class="rounded-sm bg-background p-5 shadow-xs brightness-105">
+		<div
+			use:scrollReveal={{ delay: 100 }}
+			class="rounded-sm bg-background p-5 shadow-xs brightness-105"
+		>
 			<div class="mb-2 text-lg font-semibold">Step 1: Reach out</div>
-			<div>Send a message with the type of session you’re looking for and a preferred date.</div>
+			<div>Send a message with the type of session you're looking for and a preferred date.</div>
 		</div>
-		<div class="rounded-sm bg-background p-5 shadow-xs brightness-105">
+		<div
+			use:scrollReveal={{ delay: 200 }}
+			class="rounded-sm bg-background p-5 shadow-xs brightness-105"
+		>
 			<div class="mb-2 text-lg font-semibold">Step 2: Plan your session</div>
-			<div>We’ll choose a location, time, and vibe that feels right for you.</div>
+			<div>We'll choose a location, time, and vibe that feels right for you.</div>
 		</div>
-		<div class="rounded-sm bg-background p-5 shadow-xs brightness-105">
+		<div
+			use:scrollReveal={{ delay: 300 }}
+			class="rounded-sm bg-background p-5 shadow-xs brightness-105"
+		>
 			<div class="mb-2 text-lg font-semibold">Step 3: Enjoy the experience</div>
-			<div>Relax and have fun &mdash; I’ll guide you so everything feels natural.</div>
+			<div>Relax and have fun &mdash; I'll guide you so everything feels natural.</div>
 		</div>
 	</div>
 </section>
 
-<section class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
+<section use:scrollReveal class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
 	<h2 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">Portfolio</h2>
 	<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-		{#each featuredProjects as project (project._id)}
+		{#each featuredProjects as project, index (project._id)}
 			{@const image = project.images && project.images[0]}
-			<a href={resolve(`/projects/${project.slug?.current}`)} class="relative z-1">
+			<a
+				use:scrollReveal={{ delay: index * 100 }}
+				href={resolve(`/projects/${project.slug?.current}`)}
+				class="relative z-1"
+			>
 				<div
 					class="absolute bottom-2 left-2 z-2 mb-4 px-4 font-serif text-lg font-semibold text-primary-foreground lg:text-sm"
 				>
@@ -88,7 +135,7 @@
 			</a>
 		{/each}
 	</div>
-	<div class="mt-8 flex items-center justify-center">
+	<div use:scrollReveal={{ delay: 400 }} class="mt-8 flex items-center justify-center">
 		<a
 			href={resolve('/projects')}
 			class={`${buttonVariants({
@@ -103,9 +150,9 @@
 </section>
 
 <!-- about -->
-<section class="container mx-auto my-12 max-w-280 px-4 md:my-24">
+<section use:scrollReveal class="container mx-auto my-12 max-w-280 px-4 md:my-24">
 	<div class="grid gap-8 sm:grid-cols-2">
-		<div class="max-h-130 overflow-hidden rounded-sm shadow-sm">
+		<div use:scrollReveal={{ delay: 100 }} class="max-h-130 overflow-hidden rounded-sm shadow-sm">
 			<img
 				src={aboutImage}
 				class="h-full w-full object-cover"
@@ -113,7 +160,7 @@
 				loading="lazy"
 			/>
 		</div>
-		<div class="sm:pt-8">
+		<div use:scrollReveal={{ delay: 200 }} class="sm:pt-8">
 			<h3 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">Hi, I am April</h3>
 			<p class="mb-2">
 				I’m a family and maternity photographer who believes the best photos come from real
@@ -132,11 +179,14 @@
 
 <!-- testimonials (social proof) -->
 {#if testimonials && testimonials.length > 0}
-	<section class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
+	<section use:scrollReveal class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
 		<h2 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">Kind words from past clients</h2>
 		<div class="grid gap-8 md:grid-cols-3">
-			{#each testimonials.slice(0, 3) as testimonial (testimonial._key)}
-				<div class="rounded-sm bg-background p-5 shadow-xs brightness-105">
+			{#each testimonials.slice(0, 3) as testimonial, index (testimonial._key)}
+				<div
+					use:scrollReveal={{ delay: index * 100 }}
+					class="rounded-sm bg-background p-5 shadow-xs brightness-105"
+				>
 					<div class="mb-2 text-lg italic">"{testimonial.quote}&quot;</div>
 					<div class="text-sm font-semibold">- {testimonial.author}</div>
 				</div>
@@ -145,7 +195,7 @@
 	</section>
 {/if}
 
-<section class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
+<section use:scrollReveal class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
 	<h2 class="mb-2 font-serif text-2xl font-semibold sm:text-center md:text-3xl">
 		How about a photo session that’s actually fun?
 	</h2>
