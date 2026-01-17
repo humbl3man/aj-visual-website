@@ -104,50 +104,52 @@
 	</div>
 </section>
 
-<section use:scrollReveal class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
-	<h2 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">Portfolio</h2>
-	<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-		{#each featuredProjects as project, index (project._id)}
-			{@const image = project.images && project.images[0]}
-			<a
-				use:scrollReveal={{ delay: index * 100 }}
-				href={resolve(`/projects/${project.slug?.current}`)}
-				class="relative z-1"
-			>
-				<div
-					class="absolute bottom-2 left-2 z-2 mb-4 px-4 font-serif text-lg font-semibold text-primary-foreground lg:text-sm"
+{#if featuredProjects?.length}
+	<section use:scrollReveal class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
+		<h2 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">Portfolio</h2>
+		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+			{#each featuredProjects as project, index (project._id)}
+				{@const image = project.images && project.images[0]}
+				<a
+					use:scrollReveal={{ delay: index * 100 }}
+					href={resolve(`/projects/${project.slug?.current}`)}
+					class="relative z-1"
 				>
-					{project.title}
-				</div>
-				{#if image?.asset}
-					<Image
-						asset={image.asset}
-						width={600}
-						height={600}
-						class="block h-full w-full object-cover brightness-75"
-						alt=""
-					/>
-				{:else}
-					<div class="flex h-60 w-full items-center justify-center bg-muted">
-						<span class="text-muted-foreground">No Image Available</span>
+					<div
+						class="absolute bottom-2 left-2 z-2 mb-4 px-4 font-serif text-lg font-semibold text-primary-foreground lg:text-sm"
+					>
+						{project.title}
 					</div>
-				{/if}
+					{#if image?.asset}
+						<Image
+							asset={image.asset}
+							width={600}
+							height={600}
+							class="block h-full w-full object-cover brightness-75"
+							alt=""
+						/>
+					{:else}
+						<div class="flex h-60 w-full items-center justify-center bg-muted">
+							<span class="text-muted-foreground">No Image Available</span>
+						</div>
+					{/if}
+				</a>
+			{/each}
+		</div>
+		<div use:scrollReveal={{ delay: 400 }} class="mt-8 flex items-center justify-center">
+			<a
+				href={resolve('/projects')}
+				class={`${buttonVariants({
+					variant: 'accent',
+					size: 'lg'
+				})} group w-full sm:w-70`}
+				>View full portfolio <MoveRightIcon
+					class="transition duration-200 group-hover:translate-x-0.5"
+				/>
 			</a>
-		{/each}
-	</div>
-	<div use:scrollReveal={{ delay: 400 }} class="mt-8 flex items-center justify-center">
-		<a
-			href={resolve('/projects')}
-			class={`${buttonVariants({
-				variant: 'accent',
-				size: 'lg'
-			})} group w-full sm:w-70`}
-			>View full portfolio <MoveRightIcon
-				class="transition duration-200 group-hover:translate-x-0.5"
-			/>
-		</a>
-	</div>
-</section>
+		</div>
+	</section>
+{/if}
 
 <!-- about -->
 <section use:scrollReveal class="container mx-auto my-12 max-w-280 px-4 md:my-24">

@@ -14,7 +14,7 @@
 </svelte:head>
 
 <div class="container mx-auto max-w-xl px-4">
-	<h1 class="mb-6 text-3xl font-semibold">Book a Session</h1>
+	<h1 class="mb-6 font-serif text-4xl font-semibold">Book a Session</h1>
 	<!-- <p class="mb-8 text-foreground/75">
 		Ready to capture your moment? Tell us the type of session, preferred dates, and any special
 		requests — we'll reply within 48 hours to confirm availability and next steps.

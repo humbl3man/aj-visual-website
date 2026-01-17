@@ -78,7 +78,6 @@
 					{#each navlinks as { href, title } (href)}
 						<li>
 							<a
-								onclick={() => (isNavigationOpen = false)}
 								class={cn([
 									'block rounded-md px-3 py-2 font-semibold transition duration-200 hover:text-accent hover:brightness-75',
 									{
