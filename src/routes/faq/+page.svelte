@@ -3,7 +3,7 @@
 </script>
 
 {#snippet faqItem(item: { question: string; answer: string })}
-	<div class="mt-8 grid gap-2 bg-background/5 md:grid-cols-[1fr_2fr] md:items-center md:gap-4">
+	<div class="grid gap-3 bg-background/5">
 		<div class="font-semibold">{item.question}</div>
 		<div class="text-foreground/80">
 			{item.answer}
@@ -14,11 +14,11 @@
 <svelte:head>
 	<title>Frequently Asked Questions | {page.data.metadata.siteTitle}</title>
 </svelte:head>
-<div class="container mx-auto max-w-5xl px-4">
-	<h1 class="font-serif text-4xl font-semibold">Frequently Asked Questions</h1>
+<div class="container mx-auto max-w-3xl px-4">
+	<h1 class="mb-9 font-serif text-4xl font-semibold">Frequently Asked Questions</h1>
 	<!-- TODO: this content should come from CMS, for now it can be hardcoded -->
 
-	<div class="flex flex-col gap-1 md:gap-3">
+	<div class="flex flex-col gap-6">
 		{@render faqItem({
 			question: 'How far in advance should I book a session?',
 			answer:
