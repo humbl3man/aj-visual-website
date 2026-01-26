@@ -8,8 +8,8 @@ export const getSiteMetaData = query(async () => {
 	const query = defineQuery(`
     *[_type == "settings"]
   `);
-	const { previewEnabled, client } = sanity;
-	const options = { stega: previewEnabled ? true : false };
+	const { client } = sanity;
+	const options = { stega: false };
 	const [result] = await client.fetch<Settings[]>(query, {}, options);
 	return {
 		metadata: result

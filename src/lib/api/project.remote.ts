@@ -28,10 +28,10 @@ export const getProjects = query(async () => {
   		}
   	}
   `);
-	const { previewEnabled, client } = sanity;
+	const { client } = sanity;
 	// useCdn controls whether to use CDN cached results. When preview is enabled
 	// we should not use the CDN so edits show immediately.
-	const options = { useCdn: !previewEnabled };
+	const options = { useCdn: true };
 	const result = await client.fetch<Project[]>(query, {}, options);
 	const projects = result;
 

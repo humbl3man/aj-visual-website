@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { MoveRightIcon } from '@lucide/svelte';
 	import { resolve } from '$app/paths';
-	import { getLandingPageData } from '$lib/api/landing.remote';
 	import { buttonVariants } from '$lib/components/ui/button';
 
 	import aboutImage from '$lib/assets/img/april-about.jpg';
 	import Image from '../components/SanityImage.svelte';
 
-	const {
-		landingPage: { featuredProjects, testimonials, heroHeadline, heroImage, heroSubtext, ctaText }
-	} = await getLandingPageData();
+	let { data } = $props();
+	const { featuredProjects, testimonials, heroHeadline, heroImage, heroSubtext, ctaText } =
+		$derived(data.landingPage);
 
 	// Scroll animation action using Intersection Observer
 	function scrollReveal(node: HTMLElement, options: { delay?: number } = {}) {

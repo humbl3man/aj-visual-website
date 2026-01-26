@@ -1,7 +1,6 @@
 import { getSiteMetaData } from '$lib/api/settings.remote';
 
-export const load = async ({ locals: { sanity } }) => {
-	const { previewEnabled } = sanity;
+export const load = async () => {
 	const { metadata } = await getSiteMetaData();
-	return { previewEnabled, metadata };
+	return { metadata };
 };

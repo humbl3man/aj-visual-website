@@ -6,7 +6,6 @@
 	import Footer from '$lib/components/Footer.svelte';
 
 	let { children, data } = $props();
-	const previewEnabled = $derived(data.previewEnabled);
 	const siteTitle = $derived(data.metadata.siteTitle);
 </script>
 
@@ -24,10 +23,8 @@
 		rel="stylesheet"
 	/>
 </svelte:head>
-<PreviewMode enabled={previewEnabled}>
-	<VisualEditing enabled={previewEnabled}>
-		<Header {siteTitle} />
-		<main>{@render children()}</main>
-		<Footer {siteTitle} />
-	</VisualEditing>
-</PreviewMode>
+<div class="flex min-h-dvh flex-col">
+	<Header {siteTitle} />
+	<main class="flex-1">{@render children()}</main>
+	<Footer {siteTitle} />
+</div>

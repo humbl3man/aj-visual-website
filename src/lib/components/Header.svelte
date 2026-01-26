@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
 	import { cn } from '$lib/utils';
 	import MenuIcon from '@lucide/svelte/icons/menu';
@@ -28,6 +29,8 @@
 	$effect(() => {
 		navigationYOffset = headerParentElement.clientHeight;
 	});
+
+	afterNavigate(() => (isNavigationOpen = false));
 </script>
 
 <div
@@ -62,7 +65,6 @@
 					{#each navlinks as { href, title } (href)}
 						<li>
 							<a
-								onclick={() => (isNavigationOpen = false)}
 								class={cn([
 									'block rounded-md px-3 py-2 text-center text-xl font-semibold text-black transition duration-200 hover:text-accent'
 								])}
