@@ -43,30 +43,51 @@
 			}
 		};
 	}
+
+	const getHeroImageUrl = $derived(() => {
+		if (heroImage?.asset?.url) {
+			const url = new URL(heroImage.asset.url);
+			url.searchParams.set('w', '1600');
+			url.searchParams.set('auto', 'format');
+			url.searchParams.set('fit', 'max');
+			url.searchParams.set('q', '100');
+			return url.toString();
+		}
+		return '';
+	});
+
+	$inspect(getHeroImageUrl());
 </script>
+
+<svelte:head>
+	<link rel="preload" as="image" href={getHeroImageUrl()} fetchpriority="high" />
+</svelte:head>
 
 <!-- hero -->
 <section>
 	<div class="relative z-1 flex items-center justify-center py-32 lg:min-h-[70dvh]">
 		{#if heroImage?.asset?.url}
 			<div
-				class="absolute top-0 left-0 -z-1 h-full w-full bg-cover brightness-60"
-				style={`background-image: url("${heroImage.asset.url}")`}
+				class="absolute top-0 left-0 -z-1 h-full w-full bg-cover brightness-30"
+				style={`background-image: url("${getHeroImageUrl()}")`}
+				aria-hidden="true"
 			></div>
 		{/if}
 
-		<div class="mx-auto max-w-[90dvw] text-white md:max-w-200">
-			<h1 class="mb-8 font-serif text-3xl font-bold sm:text-5xl md:text-6xl">
+		<div class="mx-auto max-w-[90dvw] px-4 md:max-w-200 lg:px-0">
+			<h1
+				class="mb-2 text-center font-serif text-3xl leading-tight font-bold text-background sm:text-5xl md:text-6xl lg:mb-5"
+			>
 				{heroHeadline || 'Capturing Genuine Moments'}
 			</h1>
 			{#if heroSubtext}
-				<p class="text-xl lg:text-2xl">{heroSubtext}</p>
+				<p class="text-center text-xl text-background/90">{heroSubtext}</p>
 			{/if}
-			<div class="mt-8 flex items-center gap-4">
+			<div class="mt-8 flex items-center justify-center gap-4">
 				<a
 					href={resolve('/contact')}
 					class={buttonVariants({
-						variant: 'accent',
+						variant: 'secondary',
 						size: 'lg'
 					})}>{ctaText || 'Book a Session'}</a
 				>
@@ -76,27 +97,18 @@
 </section>
 
 <!-- how it works -->
-<section use:scrollReveal class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
+<section class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
 	<h2 class="mb-6 font-serif text-2xl font-semibold md:text-3xl">What to expect</h2>
 	<div class="grid gap-8 md:grid-cols-3">
-		<div
-			use:scrollReveal={{ delay: 100 }}
-			class="rounded-sm bg-background p-5 shadow-xs brightness-105"
-		>
+		<div class="rounded-sm bg-background p-5 shadow-xs brightness-105">
 			<div class="mb-2 text-lg font-semibold">Step 1: Reach out</div>
 			<div>Send a message with the type of session you're looking for and a preferred date.</div>
 		</div>
-		<div
-			use:scrollReveal={{ delay: 200 }}
-			class="rounded-sm bg-background p-5 shadow-xs brightness-105"
-		>
+		<div class="rounded-sm bg-background p-5 shadow-xs brightness-105">
 			<div class="mb-2 text-lg font-semibold">Step 2: Plan your session</div>
 			<div>We'll choose a location, time, and vibe that feels right for you.</div>
 		</div>
-		<div
-			use:scrollReveal={{ delay: 300 }}
-			class="rounded-sm bg-background p-5 shadow-xs brightness-105"
-		>
+		<div class="rounded-sm bg-background p-5 shadow-xs brightness-105">
 			<div class="mb-2 text-lg font-semibold">Step 3: Enjoy the experience</div>
 			<div>Relax and have fun &mdash; I'll guide you so everything feels natural.</div>
 		</div>
@@ -125,7 +137,7 @@
 							width={600}
 							height={600}
 							class="block h-full w-full object-cover brightness-75"
-							alt=""
+							alt={`${project.title} photography project thumbnail`}
 						/>
 					{:else}
 						<div class="flex h-60 w-full items-center justify-center bg-muted">
