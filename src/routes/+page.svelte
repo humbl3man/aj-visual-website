@@ -208,7 +208,7 @@
 	</section>
 {/if}
 
-<section use:scrollReveal class="container mx-auto my-12 max-w-7xl px-4 md:my-24">
+<section use:scrollReveal class="container mx-auto my-16 max-w-7xl px-4">
 	<h2 class="mb-2 font-serif text-2xl font-semibold sm:text-center md:text-3xl">
 		How about a photo session that’s actually fun?
 	</h2>
