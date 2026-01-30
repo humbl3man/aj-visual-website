@@ -42,7 +42,7 @@
 								asset={projectThumbnail!}
 								width={800}
 								class="block h-full w-full object-cover brightness-70 transition duration-500 group-hover:brightness-65"
-								alt=""
+								alt={`${project.title} portfolio project`}
 							/>
 						{:else}
 							<div>Image Not Found</div>

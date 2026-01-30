@@ -46,10 +46,15 @@
 			>
 			<button
 				class={cn(['sm:hidden', 'cursor-pointer'])}
+				aria-label="Toggle navigation menu"
+				aria-expanded={isNavigationOpen}
+				aria-controls="mobile-navigation"
 				onclick={() => (isNavigationOpen = !isNavigationOpen)}><MenuIcon /></button
 			>
 			<!-- mobile navigation -->
 			<nav
+				id="mobile-navigation"
+				aria-hidden={!isNavigationOpen}
 				class={cn(
 					[
 						`absolute top-full left-0 z-999 w-dvw bg-background py-10 shadow-md shadow-foreground/10`,

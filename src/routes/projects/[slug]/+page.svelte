@@ -33,7 +33,8 @@
 					asset={images[0].asset}
 					width={1600}
 					ratio={1}
-					alt=""
+					alt={`${title} - Main project photo`}
+					loading="eager"
 					class="block h-full w-full object-cover brightness-55"
 				/>
 				<div class="absolute bottom-4 left-4 z-2 p-2 sm:bottom-5 sm:left-5 md:bottom-10 md:left-10">
@@ -63,7 +64,7 @@
 				}}
 			>
 				<Carousel.Content>
-					{#each galleryImages as image}
+					{#each galleryImages as image, idx}
 						<Carousel.Item
 							class={cn('basis-[60%]', {
 								'md:basis-1/5': galleryImages.length > 6,
@@ -72,7 +73,7 @@
 							})}
 						>
 							{#if image?.asset}
-								<SanityImage asset={image?.asset} alt="" width={600} />
+								<SanityImage asset={image?.asset} alt={`${title} gallery image ${idx + 2}`} width={600} />
 							{/if}
 						</Carousel.Item>
 					{/each}
