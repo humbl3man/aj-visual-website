@@ -40,7 +40,7 @@
 	bind:this={headerParentElement}
 >
 	<div class="container mx-auto max-w-7xl">
-		<div class="flex justify-between gap-2 px-4 py-6">
+		<div class="flex items-center justify-between gap-2 px-4 py-6">
 			<a href="/" class="block font-serif text-xl font-bold text-accent brightness-50 md:text-2xl"
 				>{siteTitle}</a
 			>
