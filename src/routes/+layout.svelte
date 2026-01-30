@@ -22,6 +22,11 @@
 		href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
 		rel="stylesheet"
 	/>
+	<link
+		rel="preload"
+		as="style"
+		href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+	/>
 </svelte:head>
 <div class="flex min-h-dvh flex-col">
 	<Header {siteTitle} />
