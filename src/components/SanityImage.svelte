@@ -17,6 +17,8 @@
 		ratio?: number;
 		class?: string;
 		imgClass?: string;
+		quality?: number;
+		loading?: 'lazy' | 'eager' | 'auto';
 		[key: string]: any;
 	};
 
@@ -27,6 +29,8 @@
 		ratio, // e.g., 1 for square, 1.5 for landscape
 		class: className, // container class
 		imgClass, // image-specific class
+		quality = 80,
+		loading = 'lazy',
 		...rest
 	}: ImageProps = $props();
 
@@ -42,6 +46,8 @@
 		const url = new URL(asset.url);
 		url.searchParams.set('w', String(width));
 		url.searchParams.set('auto', 'format');
+		url.searchParams.set('fit', 'max');
+		url.searchParams.set('q', String(quality));
 		return url.toString();
 	});
 </script>
@@ -60,6 +66,7 @@
 		<img
 			src={src()}
 			{alt}
+			{loading}
 			class={cn(
 				'h-full w-full object-cover transition-all duration-700',
 				isLoaded ? 'opacity-100' : 'opacity-0',
